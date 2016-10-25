@@ -16,7 +16,8 @@ class CrateSecondPerdiodAnswersTable extends Migration
         Schema::create('second_period_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned();
-            $table->integer('votes');
+            $table->string('picture');
+            $table->integer('votes')->default(0);
             $table->boolean('is_winner')->default(0);
             $table->softDeletes();
             $table->timestamps();

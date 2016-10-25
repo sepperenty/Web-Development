@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\First_period_answer;
 
+use App\AmountBeerWinner;
+
 class AmountBeerController extends Controller
 {
        public function __construct()
@@ -35,4 +37,6 @@ class AmountBeerController extends Controller
     	}
 
     }
+
+   
 }

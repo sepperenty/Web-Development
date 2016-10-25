@@ -20,3 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::post('/beer/add', 'AmountBeerController@add');
+
+Route::post('/pictures/add', 'PictureGameController@add');
+
+Route::get('/vote/{picture}', 'PictureGameController@vote');
+

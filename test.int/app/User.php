@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
-use app\First_period_answer;
+use App\First_period_answer;
+use App\Second_period_answer;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'has_voted',
     ];
 
     /**
@@ -30,26 +31,58 @@ class User extends Authenticatable
     ];
 
 
-     public function first_period_answer()
-     {
-        return $this->hasOne(First_period_answer::class);
-     }
-
-     public function hasNoBeerAnswer()
-     {
-        $beerAnswer = DB::table('first_period_answers')->where('user_id', $this->id)->first();
-
-        if($beerAnswer == null)
+        public function first_period_answer()
         {
-            return true;
+            return $this->hasOne(First_period_answer::class);
         }
 
-        else
+        public function hasNoBeerAnswer()
         {
-            return false;
+            $beerAnswer = First_period_answer::where('user_id', $this->id)->first();
+
+            if($beerAnswer == null)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
         }
 
-     }
+        public function second_period_answer()
+        {
+            return $this->hasOne(Second_period_answer::class);
+        }
+
+
+        public function hasNoUpload()
+        {
+            $upload = Second_period_answer::where('user_id', $this->id)->first();
+
+            if($upload == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public function hasNotVoted()
+        {
+            if($this->has_voted)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
 
 }

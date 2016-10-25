@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Second_period_answer extends Model
 {
 	use SoftDeletes;
+
+	protected $fillable = ["votes"];
     public function user()
  	{
  		return $this->belongsTo(User::class);

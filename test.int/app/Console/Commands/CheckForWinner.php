@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\Game;
-use App\First_period_answer;
+use App\AmountBeerWinner;
 use App\Second_period_answer;
 use App\Third_period_answer;
 use App\Fourth_period_answer;
@@ -52,49 +52,17 @@ class CheckForWinner extends Command
         $CodeGame = Game::where('name', 'CodeGame')->first();
         $PickImageGame = Game::where('name', 'PickImageGame')->first();
 
-        $AmountBeerEndDate = date('Y-m-d', strtotime($AmountBeerGame->end. ' + 1 days'));
-        $PictureGameEndDate = date('Y-m-d', strtotime($PictureGame->end. ' + 1 days'));
-        $CodeGameEndDate = date('Y-m-d', strtotime($CodeGame->end. ' + 1 days'));
-        $PickImageGameEndDate = date('Y-m-d', strtotime($PickImageGame->end. ' + 1 days'));
-
-        
+        $AmountBeerEndDate = ($AmountBeerGame) ? date('Y-m-d', strtotime($AmountBeerGame->end. ' + 1 days')) : 0;
+        $PictureGameEndDate = ($PictureGame) ? date('Y-m-d', strtotime($PictureGame->end. ' + 1 days')) : 0;
+        $CodeGameEndDate = ($CodeGame) ? date('Y-m-d', strtotime($CodeGame->end. ' + 1 days')) : 0;
+        $PickImageGameEndDate = ($PickImageGame) ? date('Y-m-d', strtotime($PickImageGame->end. ' + 1 days')) : 0;
 
         if($newDate == $AmountBeerEndDate)
         {
-            $answers = First_period_answer::all();
-
-            $closestAnswer = 1000;
-            $exactAnswer = 20;
-
-
-
-            foreach ($answers as $possisbleAnswer) {
-
-                $newDifferrence = abs($exactAnswer - $possisbleAnswer->answer);
-
-                
-                    if($newDifferrence < $closestAnswer)
-                    {
-
-                        $closestAnswer = $newDifferrence;
-                        
-                    }
-                
-            }
-
-            foreach ($answers as $possisbleAnswer) {
-                $difference = abs($exactAnswer - $possisbleAnswer->answer);
-
-                    if($difference == $closestAnswer)
-                    {
-                        echo 'ja';
-                        $possisbleAnswer->update([
-                            "is_winner" => 1
-                            ]);
-                    }
-
-             }
-            //do something
+            $BeerWinner = new AmountBeerWinner();
+            $BeerWinner->getWinner();
+            $AmountBeerGame->delete();
+            
         }elseif ($newDate == $PictureGameEndDate) {
             //do something
         }elseif ($newDate == $CodeGameEndDate) {

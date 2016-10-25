@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 
+use App\Second_period_answer;
+
 class HomeController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         // $thisDate = date("Y-m-d");
-        $thisDate = "2016-10-24";
+        $thisDate = "2016-10-28";
 
         $beerGame = Game::where('name', 'AmountBeerGame')->first();
         $pictureGame = Game::where('name', 'PictureGame')->first();
@@ -41,7 +43,8 @@ class HomeController extends Controller
 
         else if( ($thisDate>=$pictureGame->start) && ($thisDate <= $pictureGame->end)  )
         {
-            return view('games/pictureGame/index', compact('pictureGame'));
+            $pictures = Second_period_answer::all();
+            return view('games/pictureGame/index', compact('pictureGame', 'pictures'));
         }
 
         else if( ($thisDate>=$codeGame->start) && ($thisDate <= $codeGame->end)  )
