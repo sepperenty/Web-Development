@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         // $thisDate = date("Y-m-d");
-        $thisDate = "2016-10-28";
+        $thisDate = "2016-10-31";
 
         $beerGame = Game::where('name', 'AmountBeerGame')->first();
         $pictureGame = Game::where('name', 'PictureGame')->first();

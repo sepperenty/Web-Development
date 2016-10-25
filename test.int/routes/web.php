@@ -25,3 +25,4 @@ Route::post('/pictures/add', 'PictureGameController@add');
 
 Route::get('/vote/{picture}', 'PictureGameController@vote');
 
+Route::post('/code/add', 'CodeGameController@add');

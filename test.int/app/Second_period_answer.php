@@ -10,7 +10,7 @@ class Second_period_answer extends Model
 {
 	use SoftDeletes;
 
-	protected $fillable = ["votes"];
+	protected $fillable = ["votes", "is_winner"];
     public function user()
  	{
  		return $this->belongsTo(User::class);

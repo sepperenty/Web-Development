@@ -45,7 +45,7 @@ class CheckForWinner extends Command
     {
         
 
-        $newDate = "2016-10-27";   
+        $newDate = "2016-11-02";   
 
         $AmountBeerGame = Game::where('name', 'AmountBeerGame')->first(); 
         $PictureGame = Game::where('name', 'PictureGame')->first();
@@ -64,9 +64,44 @@ class CheckForWinner extends Command
             $AmountBeerGame->delete();
             
         }elseif ($newDate == $PictureGameEndDate) {
-            //do something
+            
+            $voteControl = 0;
+            $answers = Second_period_answer::all();
+            foreach ($answers as $answer) {
+
+                if($answer->votes > $voteControl)
+                {
+
+                    $voteControl = $answer->votes;
+                }
+            }
+
+            foreach ($answers as $answer) {
+                if($answer->votes == $voteControl)
+                {
+                     
+                    $answer->update([
+                        "is_winner"=>1,
+                        ]);
+                }
+            }
+
+            $PictureGame->delete();
+
         }elseif ($newDate == $CodeGameEndDate) {
-            //do something
+            
+            $answers = Third_period_answer::all();
+
+            foreach ($answers as $contribution) {
+                if($contribution->answer == 15)
+                {
+                    $contribution->update(['is_winner' => 1,]);
+                }
+            }
+
+            $CodeGame->delete();
+
+
         }elseif($newDate == $PickImageGameEndDate){
             //do something
         }

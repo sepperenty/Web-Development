@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use App\First_period_answer;
 use App\Second_period_answer;
+use App\Third_period_answer;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,17 @@ class User extends Authenticatable
             return $this->hasOne(First_period_answer::class);
         }
 
+        
+        public function second_period_answer()
+        {
+            return $this->hasOne(Second_period_answer::class);
+        }
+
+        public function third_period_answer()
+        {
+            return $this->hasOne(Third_period_answer::class);
+        }
+
         public function hasNoBeerAnswer()
         {
             $beerAnswer = First_period_answer::where('user_id', $this->id)->first();
@@ -52,10 +64,6 @@ class User extends Authenticatable
 
         }
 
-        public function second_period_answer()
-        {
-            return $this->hasOne(Second_period_answer::class);
-        }
 
 
         public function hasNoUpload()
@@ -81,6 +89,20 @@ class User extends Authenticatable
             else
             {
                 return true;
+            }
+        }
+
+        public function hasNotSubmittedCode()
+        {
+            $possAnswer = Third_period_answer::where('user_id', $this->id)->first();
+
+            if($possAnswer == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
