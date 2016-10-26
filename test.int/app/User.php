@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\First_period_answer;
 use App\Second_period_answer;
 use App\Third_period_answer;
@@ -13,6 +14,7 @@ use App\Fourth_period_answer;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +33,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $dates = ["deleted_at"];
 
 
         public function first_period_answer()
@@ -53,6 +57,12 @@ class User extends Authenticatable
         {
             return $this->hasOne(Fourth_period_answer::class);
         }
+
+        public function isAdmin()
+        {
+            return $this->admin;
+        }
+
 
 
 
