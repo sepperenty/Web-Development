@@ -19,6 +19,7 @@ class CrateFourthPeriodAnswersTable extends Migration
             $table->integer('answer');
             $table->double('tiebreaker');
             $table->boolean('is_winner')->default(0);
+            $table->ipAddress('ip');
             $table->softDeletes();
             $table->timestamps();
         });

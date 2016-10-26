@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Mail;
+
 use App\First_period_answer;
 
 class AmountBeerWinner
@@ -43,9 +45,17 @@ class AmountBeerWinner
                         $possisbleAnswer->update([
                             "is_winner" => 1
                             ]);
+
                     }
 
     		}
+
+        // $winners = First_period_answer::where('is_winner', 1)->get();
+
+        // Mail::send('mails.newWinner', ['winners' => $winners], function($m)use($winners){
+        //     $m->from('hetlo@app.be', 'jupilerWinner');
+        //     $m->to('sepperenty@hotmail.com', "sepperenty")->subject('There is a winner');
+        // });
 
 
 

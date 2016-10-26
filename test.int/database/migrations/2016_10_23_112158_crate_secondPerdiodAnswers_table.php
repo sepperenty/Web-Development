@@ -19,6 +19,7 @@ class CrateSecondPerdiodAnswersTable extends Migration
             $table->string('picture');
             $table->integer('votes')->default(0);
             $table->boolean('is_winner')->default(0);
+            $table->ipAddress('ip');
             $table->softDeletes();
             $table->timestamps();
         });

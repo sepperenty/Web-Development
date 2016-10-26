@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 
 use App\Game;
 use App\AmountBeerWinner;
+use App\PictureGameWinner;
+use App\CodeGameWinner;
+use App\PickImageGameWinner;
 use App\Second_period_answer;
 use App\Third_period_answer;
 use App\Fourth_period_answer;
@@ -45,7 +48,7 @@ class CheckForWinner extends Command
     {
         
 
-        $newDate = "2016-11-02";   
+        $newDate = "2016-10-27";   
 
         $AmountBeerGame = Game::where('name', 'AmountBeerGame')->first(); 
         $PictureGame = Game::where('name', 'PictureGame')->first();
@@ -65,45 +68,21 @@ class CheckForWinner extends Command
             
         }elseif ($newDate == $PictureGameEndDate) {
             
-            $voteControl = 0;
-            $answers = Second_period_answer::all();
-            foreach ($answers as $answer) {
-
-                if($answer->votes > $voteControl)
-                {
-
-                    $voteControl = $answer->votes;
-                }
-            }
-
-            foreach ($answers as $answer) {
-                if($answer->votes == $voteControl)
-                {
-                     
-                    $answer->update([
-                        "is_winner"=>1,
-                        ]);
-                }
-            }
-
+            $pictureWinner = new PictureGameWinner();
+            $pictureWinner->getWinner();
             $PictureGame->delete();
 
         }elseif ($newDate == $CodeGameEndDate) {
             
-            $answers = Third_period_answer::all();
-
-            foreach ($answers as $contribution) {
-                if($contribution->answer == 15)
-                {
-                    $contribution->update(['is_winner' => 1,]);
-                }
-            }
-
+            $codeWinner = new CodeGameWinner();
+            $codeWinner->getWinner();
             $CodeGame->delete();
 
 
         }elseif($newDate == $PickImageGameEndDate){
-            //do something
+            $pickImageWinner = new PickImageGameWinner();
+            $pickImageWinner->getWinner();
+            $PickImageGame->delete();
         }
 
         

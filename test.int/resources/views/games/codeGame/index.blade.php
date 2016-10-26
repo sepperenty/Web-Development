@@ -18,6 +18,14 @@
 					{!! Form::label('code', "Je code"); !!}
 					
 					{!! Form:: text('code',"",['class'=>'form-control']); !!}
+					@if(count($errors) > 0)
+						
+						@foreach($errors->all() as $error)
+								<p class="alert alert-danger">
+									{{$error}}
+								</p>
+						@endforeach
+					@endif
 
 					</div>
 		

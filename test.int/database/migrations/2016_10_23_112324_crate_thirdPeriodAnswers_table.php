@@ -18,6 +18,7 @@ class CrateThirdPeriodAnswersTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->string('answer');
             $table->boolean('is_winner')->default(0);
+            $table->ipAddress('ip');
             $table->softDeletes();
             $table->timestamps();
         });

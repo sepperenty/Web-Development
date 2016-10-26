@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\http\UploadedFile;
-
+use Illuminate\view\middleware\ShareErrorsFromSession;
 use App\UploadPicture;
 use App\Second_period_answer;
 use App\Http\Requests;
@@ -21,8 +21,8 @@ class PictureGameController extends Controller
 	public function add(Request $request)
 	{	
 		$this->validate($request, [
-			'picture' => 'max:5000 | mimes:jpeg,bmp,png',
-
+			'picture' => 'required | max:5000 | mimes:jpeg,bmp,png',
+			
 			]);
 
 		if($request->hasFile('picture'))
@@ -37,13 +37,17 @@ class PictureGameController extends Controller
 
 			$newAnswer->picture = $newName;
 
+			$newAnswer->ip = $request->ip();
+
 			Auth()->user()->second_period_answer()->save($newAnswer);
 
-			return redirect('/home');
+			$request->session()->flash('message', "Je foto is succesvol geupload.");
+
+			return redirect('/game');
 		}
 	}
 
-	public function vote(Second_period_answer $picture)
+	public function vote(Second_period_answer $picture, Request $request)
 	{
 		if(Auth()->user()->hasNotVoted())
 		{
@@ -58,21 +62,23 @@ class PictureGameController extends Controller
 					"has_voted" => 1,
 					]);
 
-				return redirect("/home");
+				$request->session()->flash('message', "Je vote is opgeslagen.");
+
+				return redirect("/game");
 			}
 
 			else
 			{
-				//message not vote on your own picture
-				return redirect("/home");
+				$request->session()->flash('message', "Je kan niet op je eigen foto voten.");
+				return redirect("/game");
 			}
 			
 		}
 
 		else
 		{
-			//message You have already voted
-			return redirect("/home");
+			$request->session()->flash('message', "Je kan maar 1 keer voten per account.");
+			return redirect("/game");
 		}
 		
 	}

@@ -18,6 +18,7 @@ class CreateFirstPeriodAnswersTable extends Migration
             $table->integer('user_id')->index()->unsigned();
             $table->double('answer', 15,8);
             $table->boolean('is_winner')->default(0);
+            $table->ipAddress('ip');
             $table->softDeletes();
             $table->timestamps();
         });

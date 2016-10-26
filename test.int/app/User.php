@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\First_period_answer;
 use App\Second_period_answer;
 use App\Third_period_answer;
+use App\Fourth_period_answer;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,14 @@ class User extends Authenticatable
         {
             return $this->hasOne(Third_period_answer::class);
         }
+
+        public function fourth_period_answer()
+        {
+            return $this->hasOne(Fourth_period_answer::class);
+        }
+
+
+
 
         public function hasNoBeerAnswer()
         {
@@ -96,6 +105,19 @@ class User extends Authenticatable
         {
             $possAnswer = Third_period_answer::where('user_id', $this->id)->first();
 
+            if($possAnswer == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public function hasNotPickedImage()
+        {
+            $possAnswer = Fourth_period_answer::where('user_id', $this->id)->first();
             if($possAnswer == null)
             {
                 return true;

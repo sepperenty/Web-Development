@@ -19,6 +19,15 @@
 		<div class="form-group">
 			{!! Form::label('picture', 'Upload  a picture') !!}
 			{!! Form::file("picture", ['class'=>'form-control']) !!}
+
+			@if(count($errors) > 0)
+						
+						@foreach($errors->all() as $error)
+								<p class="alert alert-danger">
+									{{$error}}
+								</p>
+						@endforeach
+			@endif
 			
 		</div>
 

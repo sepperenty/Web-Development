@@ -76,6 +76,16 @@
             </div>
         </div>
     </nav>
+    
+   
+        @if(! empty($message))
+             <div class="col-md-12 alert alert-info">
+                  <p>{{$message}}</p>
+             </div>
+        @endif
+
+    
+   
 
     @yield('content')
 

@@ -26,6 +26,15 @@
 					{!! Form::label('answer', "Je Antwoord"); !!}
 					{!! Form:: number('answer',0,['class'=>'form-control']); !!}
 
+					@if(count($errors) > 0)
+						
+						@foreach($errors->all() as $error)
+								<p class="alert alert-danger">
+									{{$error}}
+								</p>
+						@endforeach
+					@endif
+
 				</div>
 				
 				<div class="form-group">
