@@ -48,7 +48,7 @@ class CheckForWinner extends Command
     {
         
 
-        $newDate = "2016-10-27";   
+        $newDate = "2016-10-30";   
 
         $AmountBeerGame = Game::where('name', 'AmountBeerGame')->first(); 
         $PictureGame = Game::where('name', 'PictureGame')->first();

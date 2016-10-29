@@ -59,7 +59,7 @@ class PictureGameController extends Controller
 					'votes' => $votes,
 					]);
 				Auth()->user()->update([
-					"has_voted" => 1,
+					"has_voted" => $picture->id,
 					]);
 
 				$request->session()->flash('message', "Je vote is opgeslagen.");

@@ -18,7 +18,7 @@ class GameController extends Controller
     public function index()
     {
         //$thisDate = date("Y-m-d");
-        $thisDate = "2016-10-24";
+        $thisDate = "2016-10-28";
 
         $beerGame = Game::where('name', 'AmountBeerGame')->first();
         $pictureGame = Game::where('name', 'PictureGame')->first();

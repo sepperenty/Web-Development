@@ -1,0 +1,104 @@
+body {
+  background-image: url("../images/webImages/logo.jpg");
+  background-color: #d8191e;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 800px -50px; }
+
+#background-image {
+  position: relative;
+  z-index: 0; }
+
+.navbar {
+  background-color: #d8191e;
+  height: 100px;
+  box-shadow: 10px 10px 5px #888888; }
+  .navbar #nav_item {
+    font-family: "Franklin Gothic Heavy", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 20px;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  .navbar #logo {
+    width: 70px; }
+
+.one-edge-shadow {
+  border: none;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 10px 10px -8px black; }
+
+hr {
+  height: 2px;
+  border: 0;
+  background: #000; }
+
+.webBlock {
+  background-color: #d8191e;
+  border: 1px solid black;
+  padding: 20px;
+  color: white;
+  font-family: "Franklin Gothic Medium";
+  font-size: 19px;
+  -webkit-box-shadow: 4px 4px 5px black;
+  -moz-box-shadow: 4px 4px 5px black;
+  box-shadow: 4px 4p 5px black;
+  margin-bottom: 50px; }
+  .webBlock h1, .webBlock h4 {
+    font-family: "Franklin Gothic Heavy", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    color: black; }
+  .webBlock h4 {
+    font-size: 23px; }
+  .webBlock #webButton {
+    color: black;
+    background-color: #d8191e;
+    border: 2px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block; }
+  .webBlock #winPicture {
+    -webkit-box-shadow: 4px 4px 5px black;
+    -moz-box-shadow: 4px 4px 5px black;
+    box-shadow: 4px 4p 5px black; }
+  .webBlock #koelkast {
+    width: 350px;
+    -webkit-box-shadow: 4px 4px 5px black;
+    -moz-box-shadow: 4px 4px 5px black;
+    box-shadow: 4px 4p 5px black; }
+  .webBlock .fileUpload {
+    position: relative;
+    overflow: hidden;
+    background-color: #d8191e;
+    border: 2px solid black;
+    height: 50px;
+    width: 200px;
+    text-align: center; }
+  .webBlock .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    height: 100%;
+    text-align: center; }
+  .webBlock #uploadFile {
+    background-color: #d8191e;
+    border: none;
+    color: black; }
+
+.uploadPicture {
+  width: 33%;
+  height: 100px;
+  overflow: hidden;
+  margin-left: 0; }
+  .uploadPicture img {
+    width: 100%; }
+
+/*# sourceMappingURL=style.css.map */

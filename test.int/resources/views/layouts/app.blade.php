@@ -11,7 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+     <link href="/css/app.css" rel="stylesheet">
+ 
+    <link rel="stylesheet" href="/css/style.css">
+
 
     <!-- Scripts -->
     <script>
@@ -20,8 +23,8 @@
         ]); ?>
     </script>
 </head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
+<body id="back-image">
+    <nav class="navbar navbar-default navbar-static-top one-edge-shadow">
         <div class="container">
             <div class="navbar-header">
 
@@ -32,13 +35,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
+               
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img id="logo" src="images/webImages/logo.jpg" alt="">
                 </a>
                 @if(Auth()->check() && Auth()->user()->isAdmin())
-                <a href="/manage" class="navbar-brand">Beheer</a>
+                <a href="/manage" class="navbar-brand" id="nav_item">Beheer</a>
                 @endif
             </div>
 
@@ -52,11 +55,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}" id="nav_item">Login</a></li>
+                        <li><a href="{{ url('/register') }}" id="nav_item">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" id="nav_item" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -94,5 +97,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/base.js"></script>
 </body>
 </html>

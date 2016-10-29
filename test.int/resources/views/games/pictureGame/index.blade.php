@@ -3,22 +3,27 @@
 @section('content')
 
 	<div class="container">
-			
-		<h1>Picture Game!</h1>
-	
+				
 		
 
-	
+	  <div class="row webBlock">
+
+	 <h1> Foto Spel </h1>
 	
 	@if(Auth()->user()->hasNoUpload())
 	
-	<p>Upload je favoriete foto en maak kans op een koelkast vol Jupiler !</p>
+	<p>Upload je favoriete jupiler gerelateerde foto en maak kans op een koelkast vol Jupiler! </p>
 	
 	{!! Form::open(['url' => 'pictures/add', 'files' => true, 'method'=>'post']) !!}
 		
 		<div class="form-group">
-			{!! Form::label('picture', 'Upload  a picture') !!}
-			{!! Form::file("picture", ['class'=>'form-control']) !!}
+			<div class="fileUpload">
+				<p>Kies Foto</p>
+				{!! Form::file("picture", ['id'=>'uploadBtn', 'class'=>'upload']) !!}
+			</div>
+
+			<input id="uploadFile" placeholder="0 files selected" disabled="disabled" />
+			
 
 			@if(count($errors) > 0)
 						
@@ -32,7 +37,7 @@
 		</div>
 
 		<div class="form-group">
-			{!! Form::submit("Upload", ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit("VERSTUUR FOTO", ['id'=>'webButton']) !!}
 		</div>
 
 	{!! Form::close() !!}
@@ -51,13 +56,13 @@
 
 	@endif
 
-	<hr>
+	</div>
 	
 	
 	
 		@foreach($pictures as $contribution)
 			
-			<div class="thumbnail col-md-3" style="height:250px">
+			<div class="uploadPicture" style="height:250px">
 				<img src="/images/medium/{{$contribution->picture}}.jpg" alt="" style="margin-top:auto, margin-bottom:auto">
 				<p>{{$contribution->votes}}</p>
 				@if(Auth()->user()->hasNotVoted())
