@@ -5,17 +5,20 @@
 
 	<div class="container">
 
-	<h1>Beer Game!</h1>
-	<p>Raad hoeveel bier Jupiler brouwd per dag !</p>
-	<p>Ja kan 1 keer raden.</p>
-	
-	<hr>
-	
-		
-		
+	 <div class="row webBlock">
 
+		
+		
+			
+		
+<h1>Eerste wedstrijd</h1>
 	
 	@if(Auth()->user()->hasNoBeerAnswer())
+			
+		
+		<p>Raad hoeveel liter bier Jupiler brouwd per dag.</p>
+		<p>Wie het dichtste bij is wint!</p>
+		<p>Ja kan 1 keer raden.</p>
 
 			{!! Form::open(['url' => 'beer/add', 'method'=> 'post' ]) !!}
 		    	
@@ -23,8 +26,8 @@
 			
 				<div class="form-group">
 					
-					{!! Form::label('answer', "Je Antwoord"); !!}
-					{!! Form:: number('answer',0,['class'=>'form-control']); !!}
+					{!! Form::label('answer', "Je Antwoord:"); !!}
+					{!! Form:: number('answer',0,['class'=>'inputField']); !!}
 
 					@if(count($errors) > 0)
 						
@@ -38,17 +41,26 @@
 				</div>
 				
 				<div class="form-group">
-					<button class="btn btn-primary">
+					<button id="webButton">
 						submit je antwoord
 					</button>
 				</div>
 
 			{!! Form::close() !!}
 
-	</div>
+	@else
+
+
+
+		<p>Je deelname is verstuurd.</p>
+		<p>Veel succes {{Auth()->user()->name}}</p>
+		
+
 
 	@endif
 
+	</div>
+	</div>
 	
 
 @endsection

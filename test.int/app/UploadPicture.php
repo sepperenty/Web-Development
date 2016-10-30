@@ -33,6 +33,7 @@ class uploadPicture
     {
 
         $size = getimagesize($this->file);
+        $extension = $this->file->extension();
         $oldHeight = $size{1};
         $oldWidth = $size{0};
 
@@ -53,20 +54,34 @@ class uploadPicture
             $this->newMediumWidth = 384;
             $this->newMediumHeight = $oldHeight / $oldWidth * 384;
 
-        } else {
+        } else{
+            if($oldWidth<162)
+            {
             $this->newSmallHeight = 108;
-            $this->newSmallWidth = $oldWidth / $oldHeight * 108;
-
+            $this->newSmallWidth = 108;
+            }
+            else
+            {
+            $this->newSmallHeight = 162;
+            $this->newSmallWidth = 162;
+            }
+            if($oldWidth<384)
+            {
             $this->newMediumHeight = 216;
-            $this->newMediumWidth = $oldWidth / $oldHeight * 216;
-
+            $this->newMediumWidth = 216;
+            }
+            else
+            {
+            $this->newMediumHeight = 384;
+            $this->newMediumWidth = 384; 
+            }
         }
 
 
 
-        $imgSmal = Image::make($this->file)->resize($this->newSmallWidth, $this->newSmallHeight)->save('images/small/' . $this->name . ".jpg");
-        $imgMedium = Image::make($this->file)->resize($this->newMediumWidth, $this->newMediumHeight)->save('images/medium/' .  $this->name . ".jpg");
-        $imgBig = Image::make($this->file)->resize($this->originalWidth, $this->originalHeight)->save('images/big/' .  $this->name . ".jpg");
+        $imgSmal = Image::make($this->file)->resize($this->newSmallWidth, $this->newSmallHeight)->save('images/small/' . $this->name . "." . $extension);
+        $imgMedium = Image::make($this->file)->resize($this->newMediumWidth, $this->newMediumHeight)->save('images/medium/' .  $this->name . "." . $extension);
+        $imgBig = Image::make($this->file)->resize($this->originalWidth, $this->originalHeight)->save('images/big/' .  $this->name . "." . $extension);
 
 
 

@@ -28,30 +28,30 @@ class GameController extends Controller
         $message = session('message');
   
 
-        if( ($thisDate>=$beerGame->start) && ($thisDate <= $beerGame->end) )
+        if(($beerGame) && ($thisDate>=$beerGame->start) && ($thisDate <= $beerGame->end) )
         {
              return view('games/amountBeerGame/index', compact('beerGame','message'));
         }
 
-        else if( ($thisDate>=$pictureGame->start) && ($thisDate <= $pictureGame->end)  )
+        else if( ($pictureGame) && ($thisDate>=$pictureGame->start) && ($thisDate <= $pictureGame->end)  )
         {
-            $pictures = Second_period_answer::all();
+            $pictures = Second_period_answer::orderBy("created_at", "desc")->simplePaginate(24);
             return view('games/pictureGame/index', compact('pictureGame', 'pictures','message'));
         }
 
-        else if( ($thisDate>=$codeGame->start) && ($thisDate <= $codeGame->end)  )
+        else if( ($codeGame) && ($thisDate>=$codeGame->start) && ($thisDate <= $codeGame->end)  )
         {
             return view('games/codeGame/index', compact('codeGame','message'));
         }
 
-        else if( ($thisDate>=$pickImageGame->start) && ($thisDate <= $pickImageGame->end)  )
+        else if( ($pickImageGame) && ($thisDate>=$pickImageGame->start) && ($thisDate <= $pickImageGame->end)  )
         {
             return view('games/pickImageGame/index', compact('pickImageGame','message'));
         }
 
         else
         {
-            return view('home');
+            return redirect('/');
         }
         
     }

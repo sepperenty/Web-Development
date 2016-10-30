@@ -58,20 +58,26 @@
 
 	</div>
 	
-	
+	@if(count($pictures)>0)
 	
 		@foreach($pictures as $contribution)
-			
-			<div class="uploadPicture" style="height:250px">
-				<img src="/images/medium/{{$contribution->picture}}.jpg" alt="" style="margin-top:auto, margin-bottom:auto">
-				<p>{{$contribution->votes}}</p>
-				@if(Auth()->user()->hasNotVoted())
-				<a href="/vote/{{$contribution->id}}" class="badge">VOTE</a>
-				@endif
+			<div class="col-md-4 frame" >
+				<div class="uploadPicture">
+					<img src="/images/medium/{{$contribution->picture}}" alt="">
+					<div class="voting" >
+					<p>{{$contribution->votes}} votes</p>
+					@if(Auth()->user()->hasNotVoted())
+					 <a href="/vote/{{$contribution->id}}">VOTE</a>
+					 @endif
+					</div>
+				</div>
+				
 			</div>
-			
-
 		@endforeach
+
+		{{$pictures->links()}}
+
+	@endif
 
 	
 	

@@ -4,11 +4,14 @@
 
 
 		<div class="container">
+		 <div class="row webBlock">
 
 			<h1>Code Game!</h1>
 
 			@if(Auth()->user()->hasNotSubmittedCode())
-
+				<p>Vul hier de code in die zich om de onderkant van een jupiler flesje bevind.</p>
+				<p>Let op, niet elk Jupiler flesje heeft een code.</p>
+				<p>Maak kans op een koelkast vol Jupiler!</p>
 			
 				{!! Form::open(['url'=>'/code/add', 'method'=>'post']) !!}
 					
@@ -17,7 +20,7 @@
 					<div class="form-group">
 					{!! Form::label('code', "Je code"); !!}
 					
-					{!! Form:: text('code',"",['class'=>'form-control']); !!}
+					{!! Form:: text('code',"",['class'=>'inputField']); !!}
 					@if(count($errors) > 0)
 						
 						@foreach($errors->all() as $error)
@@ -30,7 +33,7 @@
 					</div>
 		
 					<div class="form-group">
-						{!! Form::submit('Verzend Code',['class'=>'btn btn-primary'])!!}
+						{!! Form::submit('Verzend Code',['id'=>'webButton'])!!}
 					</div>			
 
 
@@ -39,11 +42,12 @@
 
 			@else
 
-				<p>Jou code is gesubmit !</p>
+				<p>Jou code is verzonden !</p>
+				<p>Veel succes {{Auth()->user()->name}}</p>
 
 			@endif
 
-			
+			</div>
 			
 		</div>
 	

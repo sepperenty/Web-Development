@@ -10,7 +10,8 @@
 
 
 
-		<h1> Er is een nieuwe winnaar i </h1>
-	
+		<h1> Er is een nieuwe winnaar !  </h1>
+		
+		{{var_dump($winners)}}
 </body>
 </html>

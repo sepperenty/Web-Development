@@ -1,7 +1,4 @@
-
-
-sandbox1e4d9530b8b04141842cda1d3ed4c76b.mailgun.org
-
-
-
-key-469cb4fb42bf88afbfcbc92e834d2daf
+curl -s --user 'api:key-4238b57e7e3a41dca7c41316550e6443' \
+    https://api.mailgun.net/v3/sandboxc4a972d0e9a74b4c8af1028c3c111071.mailgun.org/messages \
+    -F from='Mailgun Sandbox <postmaster@sandboxc4a972d0e9a74b4c8af1028c3c111071.mailgun.org>' \
+    -F to='Seppe Renty <rentyseppe@gmail.com>' \

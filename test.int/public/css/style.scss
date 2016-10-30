@@ -124,18 +124,82 @@ hr{
 		border: none;
 		color: black;
 	}
+	.inputField{
+	width: 100%;
+	color:black;
+	border: 2px solid black;
+	padding: 10px;
+	}
+
+	label > input{
+	visibility : hidden;
+	
+	}
+
+	label > input+.uploadPicture{
+	cursor: pointer;
+	border: 10px solid transparent;
+	}
+
+	label>input:checked + .uploadPicture{
+	border: 10px solid black;
+	}
+
+	
+
+
 	
 }
-
-
-.uploadPicture{
-	width : 33%;
-	height: 100px;
-	overflow: hidden;
-	margin-left: 0;
-	img{
+.frame{
+	padding: 10px;
+	label{
 	width: 100%;
 	}
 }
+
+.uploadPicture{
+	height: 350px;
+	position: relative;
+	background-color: white;
+	@include shadow();
+	border-radius: 5px;
+	border: 1px solid black;
+	
+
+	img{
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	}
+	.voting{
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	bottom: 0px;
+	left:0px;
+	text-align: center;
+	padding: 10px;
+	margin: 0;
+	width: 100%;
+		p{
+			color:white;
+			font-size: 19px;
+		}
+		a{
+		background-color: $primary_color;
+		padding: 10px;
+		border: 2px solid black;
+		color: black;
+		}
+	}
+
+}
+
 
 

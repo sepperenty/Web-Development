@@ -35,7 +35,7 @@ class PictureGameController extends Controller
 
 			$newAnswer = new Second_period_answer();
 
-			$newAnswer->picture = $newName;
+			$newAnswer->picture = $newName . "." .$request->picture->extension();
 
 			$newAnswer->ip = $request->ip();
 

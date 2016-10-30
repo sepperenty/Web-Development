@@ -50,12 +50,12 @@ class AmountBeerWinner
 
     		}
 
-        // $winners = First_period_answer::where('is_winner', 1)->get();
+        $winners = First_period_answer::where('is_winner', 1)->get();
 
-        // Mail::send('mails.newWinner', ['winners' => $winners], function($m)use($winners){
-        //     $m->from('hetlo@app.be', 'jupilerWinner');
-        //     $m->to('sepperenty@hotmail.com', "sepperenty")->subject('There is a winner');
-        // });
+         Mail::send('mails.newWinner', ['winners' => $winners], function($m)use($winners){
+             $m->from('jupiler@wedstrijd.be', 'jupiler winnaar');
+             $m->to('rentyseppe@gmail.com', "sepperenty")->subject('There is a winner');
+         });
 
 
 
