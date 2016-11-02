@@ -16,6 +16,13 @@ class PictureGameController extends Controller
         $this->middleware('auth');
     }
 
+    /*
+		Met deze functie kan de gebruiker een antwoord opslagen voor de 2de wedstrijd.
+		Eerst wordt gecontroleerd of de user al een antwoord heeft verstuurd met de hasNoUpload methode.
+		Dit met gehulp van de UploadPicture klasse. De naam van de foto foto wordt gegeneereerd adhv de datum.
+		
+
+    */
     
 
 	public function add(Request $request)
@@ -25,27 +32,51 @@ class PictureGameController extends Controller
 			
 			]);
 
-		if($request->hasFile('picture'))
+		if(Auth()->user()->hasNoUpload())
 		{
-			$newName = rtrim(base64_encode(md5(microtime())), '=');
+			if($request->hasFile('picture'))
+			{
+				try{
 
-			$pictureUploader = new UploadPicture($request->picture, $newName);
+				$newName = rtrim(base64_encode(md5(microtime())), '=');
 
-			$pictureUploader->store();
+				$pictureUploader = new UploadPicture($request->picture, $newName);
 
-			$newAnswer = new Second_period_answer();
+				$pictureUploader->store();
 
-			$newAnswer->picture = $newName . "." .$request->picture->extension();
+				$newAnswer = new Second_period_answer();
 
-			$newAnswer->ip = $request->ip();
+				$newAnswer->picture = $newName . "." .$request->picture->extension();
 
-			Auth()->user()->second_period_answer()->save($newAnswer);
+				$newAnswer->ip = $request->ip();
 
-			$request->session()->flash('message', "Je foto is succesvol geupload.");
+				Auth()->user()->second_period_answer()->save($newAnswer);
 
-			return redirect('/game');
+				$request->session()->flash('message', "Je foto is succesvol geupload.");
+
+				return redirect('/game');
+				}catch(Exception $e)
+				{
+				$request->session()->flash('message', "Er is iets misgelopen. We lossen het zo snel mogelijk op.");
+				return redirect("/game");
+				}
+				
+			}
 		}
+		else
+		{
+				$request->session()->flash('message', "Je kan maar 1 foto uploaden.");
+				return redirect("/game");
+		}
+
+		
 	}
+
+	/*
+		Met deze functie kan je voten op een foto. 
+		Met de hasNotVoted wordt er gecheckt of je al gevote hebt.
+		Bij de votes row van de afbeelding wordt 1 opgeteld.
+	*/
 
 	public function vote(Second_period_answer $picture, Request $request)
 	{
@@ -53,7 +84,8 @@ class PictureGameController extends Controller
 		{
 			if(Auth()->user()->id != $picture->user_id)
 			{
-				$votes = $picture->votes+1;
+				try{
+					$votes = $picture->votes+1;
 
 				$picture->update([
 					'votes' => $votes,
@@ -62,14 +94,21 @@ class PictureGameController extends Controller
 					"has_voted" => $picture->id,
 					]);
 
-				$request->session()->flash('message', "Je vote is opgeslagen.");
+				$request->session()->flash('message', "Je stem is opgeslagen.");
 
 				return redirect("/game");
+				}catch(Exception $e)
+				{
+					$request->session()->flash('message', "Er is iets misgelopen. We lossen het zo snel mogelijk op.");
+
+					return redirect("/game");
+				}
+				
 			}
 
 			else
 			{
-				$request->session()->flash('message', "Je kan niet op je eigen foto voten.");
+				$request->session()->flash('message', "Je kan niet op je eigen foto stemmen.");
 				return redirect("/game");
 			}
 			
@@ -77,7 +116,7 @@ class PictureGameController extends Controller
 
 		else
 		{
-			$request->session()->flash('message', "Je kan maar 1 keer voten per account.");
+			$request->session()->flash('message', "Je kan maar 1 keer stemmen per account.");
 			return redirect("/game");
 		}
 		

@@ -1,5 +1,5 @@
-$header_font : "Franklin Gothic Heavy", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
-$text_font : "Franklin Gothic Medium";
+$header_font : "Libre Franklin:900", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+$text_font : "Libre Franklin", sans-serif;
 $primary_color : #d8191e;
 
 @mixin shadow()
@@ -28,7 +28,6 @@ body{
 	background-color: $primary_color;
 	height:100px;
 	box-shadow: 10px 10px 5px #888888;
-
 	#nav_item
 	{
 	font-family: $header_font;
@@ -43,6 +42,19 @@ body{
 	width: 70px;
 	}
 
+.navbar-header{
+	border:none;
+}
+
+}
+
+.dropdown{
+	background-color:white;
+}
+
+.dropdown-toggle:hover{
+	background-color:white;
+	color:white;
 }
 
 .one-edge-shadow{
@@ -201,5 +213,25 @@ hr{
 
 }
 
+table{
+	th{
+	color:black;
+	}
+}
 
 
+#checkLogin{
+	visibility : visible;
+}
+
+.message{
+width: 100%;
+background-color: white;
+color:black;
+margin-top: -20px;
+padding: 15px;
+font-size: 15px;
+p{
+	margin:0;
+}
+}

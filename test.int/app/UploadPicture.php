@@ -2,10 +2,16 @@
 
 namespace App;
 
-
-
 use Intervention\Image\ImageManagerStatic as Image;
 
+    /*
+        Deze klasse wordt gebruikt bij het uploaden van een foto.
+        De resolutie blijft hierbij in verhouding hetzelfde met de oorspronkelijke foto.
+        De foto's orden opgeslagen in 3 afmetingen.
+        Klein, medium, orgineel.
+        Op het einde worden de fotos in de bijhorende map geplaatst met de naam die is meegegeven.
+        Hierbij wordt gebruik gemaakt van Image Intervention.
+    */
 
 class uploadPicture
 {

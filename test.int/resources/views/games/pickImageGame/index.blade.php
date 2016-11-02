@@ -6,7 +6,8 @@
 	<div class="container">
 	<div class="webBlock">
 
-		<h1>Pick Image Game!</h1>
+		<h1>Vierde Wedstrijd</h1>
+		<p>Deze wedstrijd eindigd op {{$pickImageGame->end}}</p>
 
 		@if(Auth()->user()->hasNotPickedImage())
 
@@ -84,7 +85,8 @@
 		{!! Form::close() !!}
 
 		@else
-			<p>You antwoord is verstuurd. <strong>Succes !</strong></p>
+			<p>You antwoord is verstuurd. <strong>Succes: {{Auth()->user()->name}}</strong></p>
+
 
 		@endif
 		</div>

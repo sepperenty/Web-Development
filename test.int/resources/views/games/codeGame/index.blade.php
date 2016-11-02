@@ -6,10 +6,11 @@
 		<div class="container">
 		 <div class="row webBlock">
 
-			<h1>Code Game!</h1>
+			<h1>Derde Wedstrijd</h1>
 
 			@if(Auth()->user()->hasNotSubmittedCode())
 				<p>Vul hier de code in die zich om de onderkant van een jupiler flesje bevind.</p>
+				<p>Deze wedstrijd eindigt op {{$codeGame->end}}</p>
 				<p>Let op, niet elk Jupiler flesje heeft een code.</p>
 				<p>Maak kans op een koelkast vol Jupiler!</p>
 			
@@ -43,6 +44,7 @@
 			@else
 
 				<p>Jou code is verzonden !</p>
+				<p>Deze wedstrijd eindigt op {{$codeGame->end}}</p>
 				<p>Veel succes {{Auth()->user()->name}}</p>
 
 			@endif

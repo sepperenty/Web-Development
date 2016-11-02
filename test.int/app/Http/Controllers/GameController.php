@@ -15,10 +15,18 @@ class GameController extends Controller
         $this->middleware('auth');
     }
 
+    /*
+        In deze functie wordt beslist welke game er gestpeeld mag worden.
+        Eerst word dat huidige datum opgevraagt en dan wordt er gekeken in de databank met welke
+        wedstrijd dit overeenkomt.
+        Als er geen enkele data met overeenkomt wordt de gebruiker terug gestuurd naar de home pagina.
+    */
+
     public function index()
     {
         //$thisDate = date("Y-m-d");
         $thisDate = "2016-10-28";
+       
 
         $beerGame = Game::where('name', 'AmountBeerGame')->first();
         $pictureGame = Game::where('name', 'PictureGame')->first();

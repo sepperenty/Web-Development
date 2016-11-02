@@ -1,4 +1,7 @@
-curl -s --user 'api:key-4238b57e7e3a41dca7c41316550e6443' \
-    https://api.mailgun.net/v3/sandboxc4a972d0e9a74b4c8af1028c3c111071.mailgun.org/messages \
-    -F from='Mailgun Sandbox <postmaster@sandboxc4a972d0e9a74b4c8af1028c3c111071.mailgun.org>' \
-    -F to='Seppe Renty <rentyseppe@gmail.com>' \
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:900" rel="stylesheet">
+
+
+font-family: 'Libre Franklin', sans-serif;

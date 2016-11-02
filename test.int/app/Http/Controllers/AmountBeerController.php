@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,16 +19,26 @@ class AmountBeerController extends Controller
         $this->middleware('auth');
     }
 
+    /*
+        Met de add functie kan een user een nieuw antwoord genereren voor het eerste spel.
+        Eerst wordt gecontroleerd met behulp van hasNoBeerAnswer() om te kijken of de user al een
+        antwoord heeft. 
+        Als hij al een antwoord heeft wordt hij terug gestuurd naar de game pagina.
+
+    */
+
 
     public function add(Request $request)
     {
         $this->validate($request, [
-            'answer' => 'required | max:225',
+            'answer' => 'required | max:50',
 
             ]);
 
     	if(Auth()->user()->hasNoBeerAnswer())
     	{
+            try{
+
     		$newAnswer = new First_period_answer;
 
 	    	$newAnswer->answer = $request->answer;
@@ -38,14 +47,18 @@ class AmountBeerController extends Controller
 
 	   		Auth()->user()->first_period_answer()->save($newAnswer);
 
-            $request->session()->flash('message', "Je Antwoord is succes verstuurd.");
+            $request->session()->flash('message', "Je Antwoord is succesvol verstuurd.");
 
 	   		return redirect('/game');
+            }catch(Exception $e){
+                $request->session()->flash('message', "Er is iets misgelopen. We lossen het zo snel mogelijk op.");
+                return redirect('/game');
+            }
     	}
 
     	else
     	{
-            $request->session()->flash('message', "Je kan geen meerdere antwoorden versturen.");
+            $request->session()->flash('message', "Je kan maar 1 antwoord versturen.");
 
     		return redirect('/game');
     	}

@@ -11,12 +11,13 @@
 		
 			
 		
-<h1>Eerste wedstrijd</h1>
+<h1>Eerste Wedstrijd</h1>
 	
 	@if(Auth()->user()->hasNoBeerAnswer())
 			
 		
-		<p>Raad hoeveel liter bier Jupiler brouwd per dag.</p>
+		<p>Raad hoeveel liter bier Jupiler brouwt per dag.</p>
+		<p>Deze wedstrijd eindigt op {{$beerGame->end}}</p>
 		<p>Wie het dichtste bij is wint!</p>
 		<p>Ja kan 1 keer raden.</p>
 
@@ -42,7 +43,7 @@
 				
 				<div class="form-group">
 					<button id="webButton">
-						submit je antwoord
+						VERSTUUR JE ANTWOORD
 					</button>
 				</div>
 
@@ -53,6 +54,7 @@
 
 
 		<p>Je deelname is verstuurd.</p>
+		<p>Deze wedstrijd eindigt op {{$beerGame->end}}</p>
 		<p>Veel succes {{Auth()->user()->name}}</p>
 		
 

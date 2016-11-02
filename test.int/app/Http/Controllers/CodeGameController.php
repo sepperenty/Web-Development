@@ -17,23 +17,36 @@ class CodeGameController extends Controller
         $this->middleware('auth');
     }
 
+        /*
+            Met de add functie kan de gebruiker een nieuw antwoord aanmaken voor het 3de spel.
+            Met de functie hasNotSubmittedCode wordt gecontroleerd of de user al een antwoord heeft verstuurd.
+            Als hij al een antwoord heeft, wrodt hij terug gestuurd naar de game pagina.
+        */
 
     public function add(Request $request)
     {
         $this->validate($request, [
-            'code' => 'required | max:225',
+            'code' => 'required | max:50',
 
             ]);
 
     	if(Auth()->user()->hasNotSubmittedCode())
     	{
-    		$newAnswer = new Third_period_answer();
-    		$newAnswer->answer = $request->code;
+            try{
+
+            $newAnswer = new Third_period_answer();
+            $newAnswer->answer = $request->code;
             $newAnswer->ip = $request->ip();
-    		Auth()->user()->third_period_answer()->save($newAnswer);
-            $request->session()->flash('message', "Je code is succesvol verstuurd ! ");
-    		return redirect('/game');
-    		//message submitted
+            Auth()->user()->third_period_answer()->save($newAnswer);
+            $request->session()->flash('message', "Je code is succesvol verstuurd.");
+            return redirect('/game');
+
+            }catch(Exception $e)
+            {
+            $request->session()->flash('message', "Er is iets misgelopen. We lossen het zo snel mogelijk op.");
+            return redirect('/game');
+            }
+
     	}
 
     	else

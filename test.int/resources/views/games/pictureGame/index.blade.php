@@ -8,11 +8,13 @@
 
 	  <div class="row webBlock">
 
-	 <h1> Foto Spel </h1>
+	 <h1> Tweede Wedstrijd </h1>
 	
 	@if(Auth()->user()->hasNoUpload())
 	
 	<p>Upload je favoriete jupiler gerelateerde foto en maak kans op een koelkast vol Jupiler! </p>
+
+	<p>Deze wedstrijd eindigt op {{$pictureGame->end}}</p>
 	
 	{!! Form::open(['url' => 'pictures/add', 'files' => true, 'method'=>'post']) !!}
 		
@@ -46,13 +48,16 @@
 	
 		<p>Succes met je deelname ! Geef een Vote aan je favoriete foto, let op je kan maar 1 keer voten!</p>
 
+
+		<p>Deze wedstrijd eindigt op {{$pictureGame->end}}</p>
+
 	@endif
 
 	
 
 	@if(!Auth()->user()->hasNotVoted())
 	
-	<p> Je stem is Binnen gebracht. Succes !</p>
+	<p> Je stem is binnen gebracht. Succes !</p>
 
 	@endif
 

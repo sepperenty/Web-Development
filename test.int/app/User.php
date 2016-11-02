@@ -58,14 +58,15 @@ class User extends Authenticatable
             return $this->hasOne(Fourth_period_answer::class);
         }
 
+        /*
+            Al de functies hieronder worden gebruikt om te checken of iets al dan niet het geval is.
+            Bijvoorbeeld isAdmin is om te checken of de User wel degelijk isAdmin=1 heeft.
+        */
+
         public function isAdmin()
         {
             return $this->admin;
         }
-
-
-
-
 
         public function hasNoBeerAnswer()
         {

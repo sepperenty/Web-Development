@@ -23,17 +23,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*
+        Deze funcite opent de homepagina en geeft de winnaars van elke wedstrijd mee als deze er zijn.
+    */
+
     public function index()
     {
-        
-        
-
         $winners1 = First_period_answer::where('is_winner',1)->get();
         $winners2 = Second_period_answer::where('is_winner', 1)->get();
         $winners3 = Third_period_answer::where('is_winner', 1)->get();
         $winners4 = Fourth_period_answer::where('is_winner', 1)->get();
-
-
 
         return view("home", compact('winners1', 'winners2', 'winners3', 'winners4'));
         

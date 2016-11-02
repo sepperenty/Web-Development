@@ -165,6 +165,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class, //custom
         Intervention\Image\ImageServiceProvider::class, //custom
+        Maatwebsite\Excel\ExcelServiceProvider::class, //custom
 
         /*
          * Package Service Providers...
@@ -232,6 +233,7 @@ return [
         'Form' => Collective\Html\FormFacade::class, //custom
         'Html' => Collective\Html\HtmlFacade::class, //custom
         'Image' => Intervention\Image\Facades\Image::class, //custom
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class, //custom
 
     ],
 

@@ -7,13 +7,19 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" href="/images/webImages/favicon.ico">
+    <title>Jupiler Wedstrijd</title>
 
     <!-- Styles -->
-     <link href="/css/app.css" rel="stylesheet">
- 
+
+    <!---fonts---->
+
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:900" rel="stylesheet">
+
+    <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+
 
 
     <!-- Scripts -->
@@ -83,13 +89,15 @@
         </div>
     </nav>
     
-   
+    
         @if(! empty($message))
-             <div class="col-md-12 alert alert-info">
+         <div class="message col-md-12">    
+             <div class="container">
                   <p>{{$message}}</p>
              </div>
+               </div>
         @endif
-
+  
     
    
 

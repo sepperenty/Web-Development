@@ -44,11 +44,20 @@ class CheckForWinner extends Command
      *
      * @return mixed
      */
+
+
+    /*
+        Deze methode wordt opgeroepen in de schedule methode van de kernel.php file.
+        Eerst wordt er gecontroleerd welke dag het is.
+        Hierna wordt gekeken of deze dag overeenkomt met 1 dag + het einde van 1 van de wedstrijden.
+        Als dit zo is wordt de bijhorende klasse gebruikt om een winnaar aan te duiden.
+        Hierna wordt de game verwijderd (softdelete).
+    */
     public function handle()
     {
         
 
-        $newDate = "2016-10-27";   
+        $newDate = date("Y-m-d");   
 
         $AmountBeerGame = Game::where('name', 'AmountBeerGame')->first(); 
         $PictureGame = Game::where('name', 'PictureGame')->first();
